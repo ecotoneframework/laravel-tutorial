@@ -19,9 +19,9 @@ class Product
      */
     private int $productId;
 
-    private int $cost;
+    private Cost $cost;
 
-    private function __construct(int $productId, int $cost)
+    private function __construct(int $productId, Cost $cost)
     {
         $this->productId = $productId;
         $this->cost = $cost;
@@ -30,7 +30,7 @@ class Product
     }
 
     /**
-     * @CommandHandler()
+     * @CommandHandler(inputChannelName="product.register")
      */
     public static function register(RegisterProductCommand $command) : self
     {
@@ -38,9 +38,9 @@ class Product
     }
 
     /**
-     * @QueryHandler()
+     * @QueryHandler(inputChannelName="product.getCost")
      */
-    public function getCost(GetProductPriceQuery $query) : int
+    public function getCost(GetProductPriceQuery $query) : Cost
     {
         return $this->cost;
     }

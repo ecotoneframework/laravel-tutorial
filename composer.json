@@ -18,7 +18,7 @@
     "require": {
         "php": "^7.3",
         "ecotone/jms-converter": "^0.9.4",
-        "ecotone/laravel": "dev-master",
+        "ecotone/laravel": "^0.9",
         "laravel-zero/framework": "^7.0"
     },
     "require-dev": {

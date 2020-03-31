@@ -2,15 +2,15 @@
 
 namespace Bootstrap;
 
-use App\Domain\Product\InMemoryProductRepository;
 use Illuminate\Support\ServiceProvider;
+use Enqueue\AmqpLib\AmqpConnectionFactory;
 
 class QuickStartProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton(InMemoryProductRepository::class, function(){
-            return new InMemoryProductRepository();
+        $this->app->singleton(AmqpConnectionFactory::class, function () {
+            return new AmqpConnectionFactory("amqp+lib://guest:guest@rabbitmq:5672//");
         });
     }
 
@@ -21,6 +21,5 @@ class QuickStartProvider extends ServiceProvider
                 EcotoneQuickstartCommand::class
             ]);
         }
-
     }
 }

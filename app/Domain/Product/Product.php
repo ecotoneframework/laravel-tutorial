@@ -1,6 +1,8 @@
 <?php
 namespace App\Domain\Product;
 
+use App\Infrastructure\AddUserId\AddUserId;
+use App\Infrastructure\RequireAdministrator\RequireAdministrator;
 use Ecotone\Modelling\Annotation\Aggregate;
 use Ecotone\Modelling\Annotation\AggregateIdentifier;
 use Ecotone\Modelling\Annotation\CommandHandler;
@@ -9,6 +11,7 @@ use Ecotone\Modelling\WithAggregateEvents;
 
 /**
  * @Aggregate()
+ * @AddUserId()
  */
 class Product
 {
@@ -34,15 +37,20 @@ class Product
 
     /**
      * @CommandHandler(inputChannelName="product.register")
+     * @RequireAdministrator()
      */
-    public static function register(RegisterProductCommand $command, array $metadata, UserService $userService) : self
+    public static function register(RegisterProductCommand $command, array $metadata) : self
     {
-        $userId = $metadata["userId"];
-        if (!$userService->isAdmin($userId)) {
-            throw new \InvalidArgumentException("You need to be administrator in order to register new product");
-        }
+        return new self($command->getProductId(), $command->getCost(), $metadata["userId"]);
+    }
 
-        return new self($command->getProductId(), $command->getCost(), $userId);
+    /**
+     * @CommandHandler(inputChannelName="product.changePrice")
+     * @RequireAdministrator()
+     */
+    public function changePrice(ChangePriceCommand $command) : void
+    {
+        $this->cost = $command->getCost();
     }
 
     /**
@@ -51,17 +59,5 @@ class Product
     public function getCost(GetProductPriceQuery $query) : Cost
     {
         return $this->cost;
-    }
-
-    /**
-     * @CommandHandler(inputChannelName="product.changePrice")
-     */
-    public function changePrice(ChangePriceCommand $command, array $metadata) : void
-    {
-        if ($metadata["userId"] !== $this->userId) {
-            throw new \InvalidArgumentException("You are not allowed to change the cost of this product");
-        }
-
-        $this->cost = $command->getCost();
     }
 }

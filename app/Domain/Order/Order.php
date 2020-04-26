@@ -2,7 +2,7 @@
 namespace App\Domain\Order;
 
 use App\Infrastructure\AddUserId\AddUserId;
-use Ecotone\Messaging\Annotation\Async;
+use Ecotone\Messaging\Annotation\Asynchronous;
 use Ecotone\Messaging\Conversion\MediaType;
 use Ecotone\Modelling\Annotation\Aggregate;
 use Ecotone\Modelling\Annotation\AggregateIdentifier;
@@ -36,8 +36,8 @@ class Order
     }
 
     /**
+     * @Asynchronous(channelName="orders")
      * @CommandHandler(endpointId="place_order_endpoint", inputChannelName="order.place")
-     * @Async(channelName="orders")
      */
     public static function placeOrder(PlaceOrderCommand $command, array $metadata, QueryBus $queryBus) : self
     {

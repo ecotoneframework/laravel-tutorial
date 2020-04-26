@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^7.3",
-        "ecotone/laravel": "^0.9",
+        "ecotone/laravel": "^0.10",
         "laravel-zero/framework": "^7.0"
     },
     "require-dev": {

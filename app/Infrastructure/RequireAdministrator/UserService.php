@@ -2,12 +2,8 @@
 namespace App\Infrastructure\RequireAdministrator;
 
 use Ecotone\Messaging\Annotation\Interceptor\Before;
-use Ecotone\Messaging\Annotation\Interceptor\MethodInterceptor;
 use Ecotone\Messaging\Annotation\Parameter\Header;
 
-/**
- * @MethodInterceptor()
- */
 class UserService
 {
     /**

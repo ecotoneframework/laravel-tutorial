@@ -4,12 +4,8 @@ namespace App\Infrastructure\Persistence;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
 use Ecotone\Messaging\Annotation\Interceptor\Around;
-use Ecotone\Messaging\Annotation\Interceptor\MethodInterceptor;
 use Ecotone\Messaging\Handler\Processor\MethodInvoker\MethodInvocation;
 
-/**
- * @MethodInterceptor()
- */
 class TransactionInterceptor
 {
     private Connection $connection;

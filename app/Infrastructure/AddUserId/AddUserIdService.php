@@ -1,12 +1,8 @@
 <?php
 namespace App\Infrastructure\AddUserId;
 
-use Ecotone\Messaging\Annotation\Interceptor\MethodInterceptor;
 use Ecotone\Messaging\Annotation\Interceptor\Presend;
 
-/**
- * @MethodInterceptor()
- */
 class AddUserIdService
 {
     /**

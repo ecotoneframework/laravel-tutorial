@@ -37,7 +37,7 @@ class Order
 
     /**
      * @Asynchronous(channelName="orders")
-     * @CommandHandler(endpointId="place_order_endpoint", inputChannelName="order.place")
+     * @CommandHandler(inputChannelName="order.place", endpointId="place_order_endpoint")
      */
     public static function placeOrder(PlaceOrderCommand $command, array $metadata, QueryBus $queryBus) : self
     {
@@ -51,7 +51,7 @@ class Order
     }
 
     /**
-     * @QueryHandler(inputChannelName="order.getTotalPrice")
+     * @QueryHandler("order.getTotalPrice")
      */
     public function getTotalPrice() : int
     {

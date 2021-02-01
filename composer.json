@@ -16,11 +16,10 @@
         }
     ],
     "require": {
-        "php": "^7.3",
-        "doctrine/dbal": "^2.10",
-        "ecotone/jms-converter": "^0.10",
-        "ecotone/laravel": "^0.10",
-        "laravel-zero/framework": "^7.0"
+        "ecotone/laravel": "^0.12.0",
+        "laravel-zero/framework": ">=7.0",
+        "ecotone/jms-converter": "^0.12",
+        "doctrine/dbal": "^2.10"
     },
     "require-dev": {
         "mockery/mockery": "^1.3.1",

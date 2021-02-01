@@ -2,14 +2,10 @@
 
 namespace App\Domain\Product;
 
-use Ecotone\Messaging\Annotation\MessageEndpoint;
 use Ecotone\Modelling\Annotation\CommandHandler;
 use Ecotone\Modelling\Annotation\QueryHandler;
 use Ecotone\Modelling\EventBus;
 
-/**
- * @MessageEndpoint()
- */
 class ProductService
 {
     private array $registeredProducts = [];

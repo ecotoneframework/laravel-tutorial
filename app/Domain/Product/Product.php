@@ -36,7 +36,7 @@ class Product
     }
 
     /**
-     * @CommandHandler(inputChannelName="product.register")
+     * @CommandHandler("product.register")
      * @RequireAdministrator()
      */
     public static function register(RegisterProductCommand $command, array $metadata) : self
@@ -45,7 +45,7 @@ class Product
     }
 
     /**
-     * @CommandHandler(inputChannelName="product.changePrice")
+     * @CommandHandler("product.changePrice")
      * @RequireAdministrator()
      */
     public function changePrice(ChangePriceCommand $command) : void
@@ -54,7 +54,7 @@ class Product
     }
 
     /**
-     * @QueryHandler(inputChannelName="product.getCost")
+     * @QueryHandler("product.getCost")
      */
     public function getCost(GetProductPriceQuery $query) : Cost
     {

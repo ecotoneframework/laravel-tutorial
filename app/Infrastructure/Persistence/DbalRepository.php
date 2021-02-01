@@ -78,7 +78,7 @@ SELECT name FROM sqlite_master WHERE name=:tableName
 SQL, ["tableName" => self::TABLE_NAME])->fetchColumn();
 
         if (!$hasTable) {
-            $this->connection->executeUpdate(<<<SQL
+            $this->connection->executeStatement(<<<SQL
 CREATE TABLE aggregate (
     id VARCHAR(255),
     class VARCHAR(255),

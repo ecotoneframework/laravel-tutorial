@@ -1,7 +1,5 @@
 <?php
 namespace App\Infrastructure\AddUserId;
 
-/**
- * @Annotation
- */
+#[\Attribute]
 class AddUserId {}

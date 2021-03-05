@@ -3,7 +3,7 @@ namespace App\Infrastructure\Persistence;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
-use Ecotone\Messaging\Annotation\Interceptor\Around;
+use Ecotone\Messaging\Attribute\Interceptor\Around;
 use Ecotone\Messaging\Handler\Processor\MethodInvoker\MethodInvocation;
 
 class TransactionInterceptor
@@ -15,9 +15,7 @@ class TransactionInterceptor
         $this->connection = DriverManager::getConnection(array('url' => DbalRepository::CONNECTION_DSN));
     }
 
-    /**
-     * @Around(pointcut="Ecotone\Modelling\CommandBus")
-     */
+    #[Around(pointcut: "Ecotone\Modelling\CommandBus")]
     public function transactional(MethodInvocation $methodInvocation)
     {
         echo "Start transaction\n";

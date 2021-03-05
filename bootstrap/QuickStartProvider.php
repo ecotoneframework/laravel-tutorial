@@ -3,7 +3,7 @@
 namespace Bootstrap;
 
 use Illuminate\Support\ServiceProvider;
-use Enqueue\AmqpLib\AmqpConnectionFactory;
+use Enqueue\AmqpExt\AmqpConnectionFactory;
 
 class QuickStartProvider extends ServiceProvider
 {

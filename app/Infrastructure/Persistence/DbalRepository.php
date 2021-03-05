@@ -5,12 +5,10 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
 use Ecotone\Messaging\Conversion\MediaType;
 use Ecotone\Messaging\Gateway\Converter\Serializer;
-use Ecotone\Modelling\Annotation\Repository;
+use Ecotone\Modelling\Attribute\Repository;
 use Ecotone\Modelling\StandardRepository;
 
-/**
- * @Repository()
- */
+#[Repository]
 class DbalRepository implements StandardRepository
 {
     const TABLE_NAME = "aggregate";

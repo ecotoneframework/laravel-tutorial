@@ -1,12 +1,10 @@
 <?php
 namespace App\Domain\Product;
 
-use Ecotone\Modelling\Annotation\Repository;
+use Ecotone\Modelling\Attribute\Repository;
 use Ecotone\Modelling\StandardRepository;
 
-/**
- * @Repository()
- */
+#[Repository]
 class InMemoryProductRepository implements StandardRepository
 {
     /**

@@ -1,22 +1,18 @@
 <?php
 namespace App\Domain\Product;
 
-use Ecotone\Modelling\Annotation\Aggregate;
-use Ecotone\Modelling\Annotation\AggregateIdentifier;
-use Ecotone\Modelling\Annotation\CommandHandler;
-use Ecotone\Modelling\Annotation\QueryHandler;
+use Ecotone\Modelling\Attribute\Aggregate;
+use Ecotone\Modelling\Attribute\AggregateIdentifier;
+use Ecotone\Modelling\Attribute\CommandHandler;
+use Ecotone\Modelling\Attribute\QueryHandler;
 use Ecotone\Modelling\WithAggregateEvents;
 
-/**
- * @Aggregate()
- */
+#[Aggregate]
 class Product
 {
     use WithAggregateEvents;
 
-    /**
-     * @AggregateIdentifier()
-     */
+    #[AggregateIdentifier]
     private int $productId;
 
     private int $cost;
@@ -26,20 +22,16 @@ class Product
         $this->productId = $productId;
         $this->cost = $cost;
 
-        $this->record(new ProductWasRegisteredEvent($productId));
+        $this->recordThat(new ProductWasRegisteredEvent($productId));
     }
 
-    /**
-     * @CommandHandler()
-     */
+    #[CommandHandler]
     public static function register(RegisterProductCommand $command) : self
     {
         return new self($command->getProductId(), $command->getCost());
     }
 
-    /**
-     * @QueryHandler()
-     */
+    #[QueryHandler]
     public function getCost(GetProductPriceQuery $query) : int
     {
         return $this->cost;

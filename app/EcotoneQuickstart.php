@@ -19,24 +19,24 @@ class EcotoneQuickstart
 
     public function run() : void
     {
-        $this->commandBus->convertAndSendWithMetadata(
+        $this->commandBus->sendWithRouting(
             "product.register",
-            MediaType::APPLICATION_JSON,
             \json_encode(["productId" => 1, "cost" => 100]),
-            [
-                "userId" => 1
-            ]
-        );
-
-        $this->commandBus->convertAndSendWithMetadata(
-            "product.changePrice",
             MediaType::APPLICATION_JSON,
-            \json_encode(["productId" => 1, "cost" => 110]),
             [
                 "userId" => 1
             ]
         );
 
-        echo $this->queryBus->convertAndSend("product.getCost", MediaType::APPLICATION_JSON, \json_encode(["productId" => 1]));
+        $this->commandBus->sendWithRouting(
+            "product.changePrice",
+            \json_encode(["productId" => 1, "cost" => 110]),
+            MediaType::APPLICATION_JSON,
+            [
+                "userId" => 1
+            ]
+        );
+
+        echo $this->queryBus->sendWithRouting("product.getCost", \json_encode(["productId" => 1]), MediaType::APPLICATION_JSON);
     }
 }
